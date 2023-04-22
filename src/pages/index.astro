@@ -5,9 +5,19 @@ import style from './index.module.scss'
 const meta = {
   title: 'Welcome to Astro.',
 }
+
+const pages = [
+  { href: '/webfonts-performance/inline-script/', text: 'webfonts-performance (inline-script)' },
+  { href: '/webfonts-performance/optimize/', text: 'webfonts-performance (optimize)' },
+]
 ---
 
 <AppLayout {meta}>
-  <a href="/webfonts-performance/inline-script/">webfonts-performance (inline-script)</a>
-  <a href="/webfonts-performance/optimize/">webfonts-performance (optimize)</a>
+  <ul>
+    {pages.map((it) => (
+      <li>
+        <a href={it.href}>{it.text}</a>
+      </li>
+    ))}
+  </ul>
 </AppLayout>
