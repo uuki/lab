@@ -1,0 +1,12 @@
+.content {
+  max-width: 780px;
+  margin: auto;
+  padding: 100px 0;
+  line-height: 1.6;
+  font-size: 18px;
+  font-family: "fira-sans-compressed-2", source-han-sans-japanese, sans-serif;
+  font-style: normal;
+  p + p {
+    margin-top: 1.5em;
+  }
+}

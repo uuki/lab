@@ -1,0 +1,41 @@
+// fira-sans-compressed-2 - Light:800
+@font-face {
+  font-family: "fira-sans-compressed-2";
+  src:url('https://use.typekit.net/af/e77273/00000000000000007735a3fa/30/l?unicode=AAAH1AAAAAcRv6_WaG9-OwvDrhn4RB_9i_4V6F8Uy_fJETfgT7pgIAJxtbuqjFtdyS7i9RxigBzkWW6oStRCdF_nmvf2R5gaw4DD-vtwER4g8tGNAhck331emp0srIDUd8tzWS7Adk20giDxJj9fl0_EvRgH9yln87vj-NzBDxYLIs9oIPh9H8Pqm5k575QnvDn8-BMUadv_1E1a0TbBWZDRj4-E_hYdfPKq4TWHraEcE-ilfTf9pnhPwHA6dWL-SZiCveuOgi5uYuyQoCdsUmV3mXI1wHuKsQLGzHvr942wevot_gparEyocj4upnCOy-2oj-o6ZdvaNDxBgGsmHAAP_8E&features=ALL&v=3') format('woff2');
+  font-display: swap;
+  font-weight: 800;
+}
+// fira-sans-compressed-2 - Book:900
+@font-face {
+  font-family: "fira-sans-compressed-2";
+  src:url('https://use.typekit.net/af/2c0369/00000000000000007735a40f/30/l?unicode=AAAH1AAAAAcRv6_WaG9-OwvDrhn4RB_9i_4V6F8Uy_fJETfgT7pgIAJxtbuqjFtdyS7i9RxigBzkWW6oStRCdF_nmvf2R5gaw4DD-vtwER4g8tGNAhck331emp0srIDUd8tzWS7Adk20giDxJj9fl0_EvRgH9yln87vj-NzBDxYLIs9oIPh9H8Pqm5k575QnvDn8-BMUadv_1E1a0TbBWZDRj4-E_hYdfPKq4TWHraEcE-ilfTf9pnhPwHA6dWL-SZiCveuOgi5uYuyQoCdsUmV3mXI1wHuKsQLGzHvr942wevot_gparEyocj4upnCOy-2oj-o6ZdvaNDxBgGsmHAAP_8E&features=ALL&v=3') format('woff2');
+  font-display: swap;
+  font-weight: 900;
+}
+// 源ノ角ゴシック - Medium:500
+@font-face {
+  font-family: "source-han-sans-japanese";
+  src:url('https://use.typekit.net/af/cc637a/00000000000000007735de0a/30/m?features=ALL&v=4&chunks=8.15.41.176.274.322.324.368.566.567.570.571.573.640.659.662.667.669.702.712.714.718.719.725.732.734.739.749&order=0') format('woff2');
+  font-display: swap;
+  font-weight: 500;
+}
+// 源ノ角ゴシック - Bold:700
+@font-face {
+  font-family: "source-han-sans-japanese";
+  src:url('https://use.typekit.net/af/f6d7e0/00000000000000007735de0b/30/m?features=ALL&v=4&chunks=8.15.41.176.274.322.324.368.566.567.570.571.573.640.659.662.667.669.702.712.714.718.719.725.732.734.739.749&order=0') format('woff2');
+  font-display: swap;
+  font-weight: 700;
+}
+
+.content {
+  max-width: 780px;
+  margin: auto;
+  padding: 100px 0;
+  line-height: 1.6;
+  font-size: 18px;
+  font-family: "fira-sans-compressed-2", source-han-sans-japanese, sans-serif;
+  font-style: normal;
+  p + p {
+    margin-top: 1.5em;
+  }
+}
