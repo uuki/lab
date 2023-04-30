@@ -1,0 +1,376 @@
+:root {
+  --color_day: #367DB2;
+  --color_night: #1C1F2B;
+  --ease_out_bounce: cubic-bezier(0.035, 0.555, 0.370, 1.185);
+}
+
+@keyframes skyTransition {
+  0% {
+    background-color: var(--color_day);
+    transform: translate3d(0, -50%, 0);
+  }
+  100% {
+    transform: translate3d(0, -5%, 0);
+    background-color: var(--color_night);
+  }
+}
+
+@keyframes skyTransitionRev {
+  0% {
+    transform: translate3d(0, -5%, 0);
+    background-color: var(--color_night);
+  }
+  100% {
+    background-color: var(--color_day);
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes materialTransition {
+  0% {
+    left: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    left: 100%;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes materialTransitionRev {
+  0% {
+    left: 100%;
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    left: 0;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fuwafuwaPrimary {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  33% {
+    transform: translate3d(4px, 6px, 0);
+  }
+  66% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fuwafuwaSecondary {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  33% {
+    transform: translate3d(4px, -6px, 0);
+  }
+  66% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d3d9e7;
+  padding: 140px 70px;
+}
+
+.dayNightSwitcher {
+  --shadow_top: #a3a9b7;
+  --shadow_bottom: #ecedf1;
+
+  position: relative;
+  border-radius: calc(370px * (29 / 74) / 2);
+  box-shadow: 0px -4px 3px var(--shadow_top), 0px 2px 3px var(--shadow_bottom);
+  z-index: 0;
+  transition: box-shadow 0.8s var(--ease_out_bounce);
+
+  [data-theme="dark"] & {
+    --shadow_top: #a3a9b7;
+    --shadow_bottom: #ecedf1;
+  }
+
+  &::before {
+    --shadow_inner_top: rgba(47, 70, 86, 0.9);
+    --shadow_inner_bottom: rgba(47, 70, 86, 0.3);
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0px -6px 8px var(--shadow_inner_bottom), inset 0px 8px 6px var(--shadow_inner_top);
+    transition: inherit;
+
+    [data-theme="dark"] & {
+      --shadow_inner_top: rgb(19 27 34, 0.8);
+      --shadow_inner_bottom: rgba(47, 70, 86, 0.9);
+    }
+  }
+}
+
+.dayNightSwitcher__wrapper {
+  display: block;
+  width: 370px;
+  aspect-ratio: 74 / 29;
+  position: inherit;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.skyWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background-color: var(--color_day);
+  transform: translate3d(0, -50%, 0);
+  z-index: -1;
+  animation-duration: .8s;
+  animation-timing-function: var(--ease_out_bounce);
+  animation-fill-mode: forwards;
+
+  > span {
+    position: relative;
+    display: block;
+    height: 50%;
+  }
+
+  :global([data-theme="light"]) & {
+    animation-name: skyTransitionRev;
+  }
+
+  :global([data-theme="dark"]) & {
+    animation-name: skyTransition;
+  }
+}
+
+.skyWrapper__daySky {
+  > span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+
+    &:nth-child(1) {
+      width: 399px;
+      height: 168px;
+      left: 9px;
+      bottom: -22px;
+
+      svg circle {
+        &:nth-child(1) {
+          animation-name: fuwafuwaPrimary;
+          animation-duration: 16s;
+        }
+        &:nth-child(2) {
+          animation-name: fuwafuwaSecondary;
+          animation-duration: 14s;
+        }
+        &:nth-child(3) {
+          animation-name: fuwafuwaPrimary;
+          animation-duration: 12s;
+        }
+        &:nth-child(4) {
+          animation-name: fuwafuwaSecondary;
+          animation-duration: 18s;
+        }
+        &:nth-child(5) {
+          animation-name: fuwafuwaPrimary;
+          animation-duration: 14s;
+        }
+      }
+    }
+    &:nth-child(2) {
+      width: 409px;
+      height: 204px;
+      left: 13px;
+      bottom: -19px;
+      opacity: 0.6;
+
+      svg circle {
+        &:nth-child(1) {
+          animation-name: fuwafuwaSecondary;
+          animation-duration: 16s;
+        }
+        &:nth-child(2) {
+          animation-name: fuwafuwaPrimary;
+          animation-duration: 14s;
+        }
+        &:nth-child(3) {
+          animation-name: fuwafuwaSecondary;
+          animation-duration: 12s;
+        }
+        &:nth-child(4) {
+          animation-name: fuwafuwaPrimary;
+          animation-duration: 18s;
+        }
+        &:nth-child(5) {
+          animation-name: fuwafuwaSecondary;
+          animation-duration: 14s;
+        }
+      }
+    }
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+
+    circle {
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+}
+
+.skyWrapper__nightSky {
+  > span {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 50%;
+    transform: translateY(-50%);
+    margin-left: 40px;
+  }
+  svg path {
+    &:nth-child(2) {
+      animation: twinkle 8s infinite;
+    }
+    &:nth-child(6) {
+      animation: twinkle 4.5s infinite;
+    }
+    &:nth-child(8) {
+      animation: twinkle 6s infinite;
+    }
+  }
+}
+
+.materialWrppaer {
+  position: absolute;
+  inset: 0;
+}
+
+.materialWrppaer__material {
+  position: absolute;
+  height: 100%;
+  aspect-ratio: 1;
+  left: 0;
+  animation-duration: .8s;
+  animation-timing-function: var(--ease_out_bounce);
+  animation-fill-mode: forwards;
+
+  :global([data-theme="light"]) & {
+    animation-name: materialTransitionRev;
+  }
+
+  :global([data-theme="dark"]) & {
+    animation-name: materialTransition;
+  }
+}
+
+.flareWrppaer {
+  > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1;
+    background-color: #fff;
+    border-radius: 50%;
+
+    &:nth-child(1) {
+      width: 230px;
+      opacity: 0.15;
+    }
+    &:nth-child(2) {
+      width: 322px;
+      opacity: 0.12;
+    }
+    &:nth-child(3) {
+      width: 418px;
+      opacity: 0.08;
+    }
+  }
+}
+
+.celestialWrppaer {
+  overflow: hidden;
+  > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc((120 / 145) * 100%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+}
+
+.sunWrapper {
+  background-color: #f2c137;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 3px 4px #f6e39d, inset 0px -6px 6px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+}
+
+.moonWrppaer {
+  background-color: #c3c9d0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 3px 4px #fdf7df, inset 0px -6px 6px rgba(0, 0, 0, 0.3);
+  transform: translate3d(100%, -50%, 0);
+  transition: transform 0.8s var(--ease_out_bounce);
+
+  :global([data-theme="dark"]) & {
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.moonWrppaer__crater {
+  position: absolute;
+  background-color: #949EB3;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: inset 0 0 6px #80899d;
+
+  &:nth-child(1) {
+    width: 20px;
+    top: 17px;
+    left: 50%;
+    margin-left: -10px;
+  }
+  &:nth-child(2) {
+    width: 40px;
+    left: 20px;
+    top: 50%;
+    margin-top: -20px;
+  }
+  &:nth-child(3) {
+    width: 24px;
+    right: 26px;
+    bottom: 28px;
+  }
+}

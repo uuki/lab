@@ -1,0 +1,15 @@
+---
+import AppLayout from '@/layouts/App.astro';
+import ButtonDayNightSwitcher from '@/components/ButtonDayNightSwitcher/ButtonDayNightSwitcher.astro';
+import style from './index.module.scss';
+
+const meta = {
+  title: 'ui-examples',
+}
+---
+<AppLayout {meta}>
+  <div>
+    <!-- Reference source: https://www.tiktok.com/@never.more17/video/7224470057282178305 -->
+    <ButtonDayNightSwitcher />
+  </div>
+</AppLayout>
