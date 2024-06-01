@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { PARAMS } from "../../constants";
+import { PARAMS } from '../../constants';
 
 export default class ThreeFan {
   constructor(scene) {
@@ -7,7 +7,7 @@ export default class ThreeFan {
     this.config = {
       bladeCount: 4,
       latticeCount: 52,
-      radius: .4,
+      radius: 0.4,
       rotationSpeed: Math.PI * 8,
       headRotationSpeedY: Math.PI / 8,
       headRotationSpeedX: Math.PI / 16,
@@ -18,69 +18,112 @@ export default class ThreeFan {
       headRotationDirectionX: 1,
       headRotationAngleX: 0,
       isIncreasing: true,
-      latchePoints: [...Array(10)].map((_, i)=> new THREE.Vector2( Math.sin( i * 0.2 ) * 2 + 2, ( i - 3 ) * 0.2 )),
+      latchePoints: [...Array(10)].map((_, i) => new THREE.Vector2(Math.sin(i * 0.2) * 2 + 2, (i - 3) * 0.2)),
       baseSize: 1.6,
-    }
+    };
+
+    this.geometries = {};
+
+    this.materials = {
+      phongBlue: new THREE.MeshPhongMaterial({ color: PARAMS.COLORS.BLUE }),
+      phongWhite: new THREE.MeshPhongMaterial({ color: 0xffffff }),
+      phongWhiteDouble: new THREE.MeshPhongMaterial({ color: 0xffffff, side: THREE.DoubleSide }),
+      phongDarkBlue: new THREE.MeshPhongMaterial({ color: PARAMS.COLORS.BLUE_DARK }),
+    };
+
     this.models = {
       stand: {
         mesh: null,
         geometry: new THREE.CylinderGeometry(1.6, 1.6, 0.4, 30, 14),
-        material: new THREE.MeshPhongMaterial( {color: PARAMS.COLORS.BLUE} )
+        material: this.materials.phongBlue,
       },
       fakeButton: {
         mesh: null,
-        geometry: new THREE.BoxGeometry( 0.6, 0.36, 0.6 ),
-        material: new THREE.MeshPhongMaterial( {color: 0xffffff} )
+        geometry: new THREE.BoxGeometry(0.6, 0.36, 0.6),
+        material: this.materials.phongWhite,
       },
       head: {
         mesh: null,
-        geometry: new THREE.CylinderGeometry( this.config.baseSize, this.config.baseSize, this.config.baseSize * 0.4, 32,  1, true),
+        geometry: new THREE.CylinderGeometry(
+          this.config.baseSize,
+          this.config.baseSize,
+          this.config.baseSize * 0.4,
+          32,
+          1,
+          true
+        ),
         material: new THREE.MeshPhongMaterial({
           color: PARAMS.COLORS.BLUE,
           side: THREE.DoubleSide,
-        })
+        }),
       },
       backEdge: {
         mesh: null,
-        geometry: new THREE.TorusGeometry( this.config.baseSize, 0.02, this.config.baseSize * 4, 100, this.config.baseSize * 4),
-        material: new THREE.MeshPhongMaterial( {color: PARAMS.COLORS.BLUE_DARK} )
+        geometry: new THREE.TorusGeometry(
+          this.config.baseSize,
+          0.02,
+          this.config.baseSize * 4,
+          100,
+          this.config.baseSize * 4
+        ),
+        material: this.materials.phongDarkBlue,
       },
       frontEdge: {
         mesh: null,
-        geometry: new THREE.TorusGeometry( this.config.baseSize, 0.02, this.config.baseSize * 4, 100, this.config.baseSize * 4),
-        material: new THREE.MeshPhongMaterial( {color: PARAMS.COLORS.BLUE_DARK} )
+        geometry: new THREE.TorusGeometry(
+          this.config.baseSize,
+          0.02,
+          this.config.baseSize * 4,
+          100,
+          this.config.baseSize * 4
+        ),
+        material: this.materials.phongDarkBlue,
       },
       lattice: {
         mesh: null,
-        geometry: new THREE.BoxGeometry( 0.028, 0.01, this.config.baseSize * 2 ),
-        material: new THREE.MeshPhongMaterial( {color: 0xffffff} )
+        geometry: new THREE.BoxGeometry(0.028, 0.01, this.config.baseSize * 2),
+        material: this.materials.phongWhite,
       },
       neck: {
         mesh: null,
-        geometry: new THREE.CapsuleGeometry( this.config.baseSize * 0.3, this.config.baseSize * 0.3, 10, 20 ),
-        material: new THREE.MeshPhongMaterial( {color: 0xffffff, side: THREE.DoubleSide } )
+        geometry: new THREE.CapsuleGeometry(this.config.baseSize * 0.3, this.config.baseSize * 0.3, 10, 20),
+        material: this.materials.phongWhiteDouble,
       },
       foot: {
         mesh: null,
-        geometry: new THREE.CylinderGeometry( this.config.baseSize * 0.1, this.config.baseSize * 0.1, 4, 20 ),
-        material: new THREE.MeshLambertMaterial( {color: 0xffffff, side: THREE.DoubleSide } )
+        geometry: new THREE.CylinderGeometry(this.config.baseSize * 0.1, this.config.baseSize * 0.1, 4, 20),
+        material: this.materials.phongWhiteDouble,
       },
       bladeBase: {
         mesh: null,
-        geometry: new THREE.CylinderGeometry( this.config.baseSize * 0.18, this.config.baseSize * 0.032, this.config.baseSize * 0.18, this.config.baseSize * 12.5),
-        material: new THREE.MeshPhongMaterial( {color: 0xededed} )
+        geometry: new THREE.CylinderGeometry(
+          this.config.baseSize * 0.18,
+          this.config.baseSize * 0.032,
+          this.config.baseSize * 0.18,
+          this.config.baseSize * 12.5
+        ),
+        material: new THREE.MeshPhongMaterial({ color: 0xededed }),
       },
       blade: {
         mesh: null,
-        geometry: new THREE.CylinderGeometry( this.config.baseSize, this.config.baseSize * 0.874, 0.1, 1, 1, false, -0.3, 0.6),
+        geometry: new THREE.CylinderGeometry(
+          this.config.baseSize,
+          this.config.baseSize * 0.874,
+          0.1,
+          1,
+          1,
+          false,
+          -0.3,
+          0.6
+        ),
         material: new THREE.MeshPhongMaterial({
           color: PARAMS.COLORS.BLUE,
           transparent: true,
           opacity: 0.8,
           side: THREE.DoubleSide,
         }),
-      }
-    }
+      },
+    };
     this.groups = {
       head: null,
       neck: null,
@@ -88,7 +131,7 @@ export default class ThreeFan {
       frontLattice: null,
       backLattice: null,
       stand: null,
-    }
+    };
 
     this._initialize();
   }
@@ -161,7 +204,7 @@ export default class ThreeFan {
 
     // 足とスタンドをシーンに追加
     this.scene.add(this.models.foot.mesh);
-    this.scene.add(this.groups.stand)
+    this.scene.add(this.groups.stand);
 
     // 格子
     this.models.lattice.mesh = [...Array(this.config.latticeCount)].map((_, i) => {
@@ -196,8 +239,10 @@ export default class ThreeFan {
     this.models.blade.mesh[3].position.z = this.models.blade.mesh[2].position.z;
 
     // 1枚目と3枚目の羽根のx軸位置を2枚目と4枚目に合わせる
-    this.models.blade.mesh[0].position.x = (this.models.blade.mesh[1].position.x + this.models.blade.mesh[3].position.x) / 2;
-    this.models.blade.mesh[2].position.x = (this.models.blade.mesh[1].position.x + this.models.blade.mesh[3].position.x) / 2;
+    this.models.blade.mesh[0].position.x =
+      (this.models.blade.mesh[1].position.x + this.models.blade.mesh[3].position.x) / 2;
+    this.models.blade.mesh[2].position.x =
+      (this.models.blade.mesh[1].position.x + this.models.blade.mesh[3].position.x) / 2;
   }
 
   animation(delta) {
@@ -213,6 +258,6 @@ export default class ThreeFan {
       this.config.headRotationDirectionX = 1;
       this.config.headRotationX = 0;
     }
-    this.groups.neck.rotation.y = (this.config.headRotationX - (this.config.headRotationRangeX / 2)) * -1;
+    this.groups.neck.rotation.y = (this.config.headRotationX - this.config.headRotationRangeX / 2) * -1;
   }
 }

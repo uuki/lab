@@ -1,8 +1,7 @@
 import * as THREE from 'three';
-import { PARAMS } from "../../constants";
+import { PARAMS } from '../../constants';
 
 export default class ThreeRoom {
-
   constructor(scene) {
     this.scene = scene;
     this.config = {
@@ -10,15 +9,20 @@ export default class ThreeRoom {
       wallThickness: 0.2,
       wallHeight: PARAMS.WORLD_CAMERA.FAR * 0.4,
     };
+
+    this.geometries = {
+      wall: new THREE.PlaneGeometry(this.config.floorSize, this.config.wallHeight),
+    };
+
     this.models = {
       wall: {
         mesh: null,
-        geometry: new THREE.PlaneGeometry(this.config.floorSize, this.config.wallHeight),
+        geometry: this.geometries.wall,
         material: null,
       },
       backWall: {
         mesh: null,
-        geometry: new THREE.PlaneGeometry(this.config.floorSize, this.config.wallHeight),
+        geometry: this.geometries.wall,
         material: null,
       },
       floor: {
@@ -26,12 +30,12 @@ export default class ThreeRoom {
         geometry: new THREE.PlaneGeometry(this.config.floorSize, this.config.floorSize),
         material: null,
       },
-    }
+    };
     this._initialize();
   }
 
   async _loadTexture(path) {
-    const loader = new  THREE.TextureLoader();
+    const loader = new THREE.TextureLoader();
     return await loader.load(path);
   }
 
@@ -71,18 +75,29 @@ export default class ThreeRoom {
     this.scene.add(this.models.backWall.mesh);
 
     // Left wall
-    this.models.wall.mesh[0].position.set(this.config.floorSize / 2 - this.config.wallThickness / 2, this.config.wallHeight / 2, 0);
+    this.models.wall.mesh[0].position.set(
+      this.config.floorSize / 2 - this.config.wallThickness / 2,
+      this.config.wallHeight / 2,
+      0
+    );
     this.models.wall.mesh[0].rotation.y = -Math.PI / 2;
 
     // Right wall
-    this.models.wall.mesh[1].position.set(-this.config.floorSize / 2 + this.config.wallThickness / 2, this.config.wallHeight / 2, 0);
+    this.models.wall.mesh[1].position.set(
+      -this.config.floorSize / 2 + this.config.wallThickness / 2,
+      this.config.wallHeight / 2,
+      0
+    );
     this.models.wall.mesh[1].rotation.y = Math.PI / 2;
 
     // Back wall
-    this.models.backWall.mesh.position.set(0, this.config.wallHeight / 2, this.config.floorSize / -2 - this.config.wallThickness / -2);
+    this.models.backWall.mesh.position.set(
+      0,
+      this.config.wallHeight / 2,
+      this.config.floorSize / -2 - this.config.wallThickness / -2
+    );
 
     this.models.floor.mesh.rotation.x = -Math.PI / 2;
     this.scene.add(this.models.floor.mesh);
   }
-
 }
