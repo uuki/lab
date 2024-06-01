@@ -1,9 +1,9 @@
-lang: "en"
-siteName: "Astro basic template"
+lang: "ja"
+siteName: "lab.uuki.dev"
 
 meta:
   title: ""
-  description: "🚀 Astro basic template provides a basic structure and config for website development."
+  description: ""
   "og:title": ""
   "og:description": ""
   "og:image": ""
