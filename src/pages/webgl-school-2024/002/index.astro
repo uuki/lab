@@ -1,0 +1,25 @@
+---
+import AppLayout from '@/layouts/App.astro';
+import { Icon } from 'astro-icon/components';
+import style from './style.module.scss';
+
+const meta = {
+  title: 'Report 002',
+}
+---
+
+<AppLayout {meta}>
+  <div id="webgl"></div>
+  <div class={style.remote}>
+    <div class:list={[style.remote__content, 'js-three-control']}>
+      <div class={style.remote__item}>
+        <input type="checkbox" class={style.toggleButton} data-control-type="switch" checked>
+        <span class={style.remote__text}>Turn On/Off <Icon name="switch" /></span>
+      </div>
+    </div>
+  </div>
+</AppLayout>
+
+<script>
+  import '@/js/webgl-school-2024/002/script';
+</script>

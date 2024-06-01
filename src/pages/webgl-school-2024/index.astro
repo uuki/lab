@@ -1,0 +1,21 @@
+---
+import AppLayout from '@/layouts/App.astro';
+
+const meta = {
+  title: 'WebGL School Reports',
+}
+
+const pages = [
+  { href: '/webgl-school-2024/002/', text: '002' },
+]
+---
+
+<AppLayout {meta}>
+  <ul>
+    {pages.map((it) => (
+      <li>
+        <a href={it.href}>{it.text}</a>
+      </li>
+    ))}
+  </ul>
+</AppLayout>
