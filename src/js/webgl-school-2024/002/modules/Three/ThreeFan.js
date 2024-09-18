@@ -119,7 +119,7 @@ export default class ThreeFan {
         material: new THREE.MeshPhongMaterial({
           color: PARAMS.COLORS.BLUE,
           transparent: true,
-          opacity: 0.8,
+          opacity: 0.5,
           side: THREE.DoubleSide,
         }),
       },
