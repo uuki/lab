@@ -16,8 +16,18 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom", "dom.iterable"],
+    "types": [
+     "unplugin-icons/types/svelte",
+    ],
+    "plugins": [
+      {
+        "name": "typescript-svelte-plugin",
+        "enabled": true,
+        "assumeIsSvelteProject": true
+      }
+    ]
   },
-  "extends": "astro/tsconfigs/strict",
-  "exclude": ["node_modules"],
-  "include": ["utils/**/*.ts", "src/**/*.astro", "src/**/*.ts", "src/**/*.tsx", "src/**/*.svelte"]
+  "extends": ["astro/tsconfigs/strict", "@tsconfig/svelte/tsconfig.json"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro", "src/**/*.svelte"],
+  "exclude": ["node_modules"]
 }

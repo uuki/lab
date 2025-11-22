@@ -1,9 +1,7 @@
-lang: "ja"
-siteName: "lab.uuki.dev"
-
-meta:
-  title: ""
-  description: ""
-  "og:title": ""
-  "og:description": ""
-  "og:image": ""
+title: ""
+description: ""
+og:title: ""
+og:description: ""
+og:image: ""
+twitter:title: ""
+twitter:description: ""

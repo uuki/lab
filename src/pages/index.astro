@@ -6,11 +6,27 @@ const meta = {
   title: 'Welcome to Astro.',
 }
 
-const pages = [
-  { href: '/webfonts-performance/inline-script/', text: 'webfonts-performance (inline-script)' },
-  { href: '/webfonts-performance/optimize/', text: 'webfonts-performance (optimize)' },
-  { href: '/webgl-school-2024/', text: 'WebGL School 2024' },
-]
+function getPageInfo(path: string) {
+  const href = path
+    .replace(/^\./, '')
+    .replace(/index\.astro$/, '')
+    .replace(/\.astro$/, '/');
+
+  // パスから表示用のテキストを生成
+  const text = href
+    .split('/')
+    .filter(Boolean)
+    .map(part => part.replace(/-/g, ' '))
+    .join(' / ');
+
+  return { href, text };
+}
+
+const pages = Object.keys(
+  import.meta.glob("./**/*.astro", { eager: true })
+)
+  .filter(path => path !== './index.astro')
+  .map(path => getPageInfo(path));
 ---
 
 <AppLayout {meta}>

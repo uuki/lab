@@ -6,6 +6,7 @@ const props = Astro.props;
 ---
 
 <DocumentLayout {...props}>
+  <slot name="head" slot="head" />
   <main>
     <slot />
   </main>

@@ -7,6 +7,10 @@ const meta = {
 }
 ---
 <AppLayout {meta}>
+  <Fragment slot="head">
+    <link rel="dns-prefetch" href="https://use.typekit.net">
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  </Fragment>
   <script is:inline>
     (function(d) {
       var config = {
