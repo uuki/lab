@@ -1,0 +1,16 @@
+---
+import WebUILayout from '@/layouts/themes/WebUI/WebUI.astro';
+import style from './index.module.scss'
+
+const meta = {
+  title: 'liquid and responsive style utility',
+}
+---
+<WebUILayout {meta}>
+  <div class={style.container}>
+    <div class={style.exampleBox}>
+      <p class={style.liquidText}>リキッドテキストサイズ</p>
+      <div class={style.liquidBox}>リキッドボックスサイズ</div>
+    </div>
+  </div>
+</WebUILayout>

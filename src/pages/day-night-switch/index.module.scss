@@ -1,0 +1,12 @@
+html, body {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #d3d9e7;
+  padding: 140px 70px;
+}

@@ -1,0 +1,27 @@
+@use "sass:math";
+@use "sass:map";
+/**
+ * $base -> 基準点（デザインデータのベストビューを指定）
+ * $px -> ウィンドウサイズが基準点になった時の対象サイズ（px）
+ * $minmax -> e.g. $minmax: (min: 14, max: 28)
+ *
+ * $config -> 各ブレイクポイントで、「リキッドの基準値」とする値を設定 ※ブレイクポイント自体の値とは異なる
+ */
+$config: (
+  desktop: 1366,
+  mobile: 375,
+  landscape: 768,
+  portrait: 375,
+);
+
+@function liquid($px, $device: 'desktop', $minmax: false) {
+  $axis: if($device == 'landscape', 100svh, 100vw);
+  $base: map.get($config, $device);
+
+  @if $minmax {
+    @return clamp(#{map.get($minmax, 'min')}px, #{math.div($px, $base) * $axis}, #{map.get($minmax, 'max')}px);
+  }
+  @else {
+    @return math.div($px, $base) * $axis;
+  }
+}

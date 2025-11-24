@@ -1,32 +1,13 @@
 ---
-import AppLayout from '@/layouts/App.astro';
+import AppLayout from '@/layouts/core/App.astro';
 import style from './index.module.scss'
+import { getPages } from '@/utils/route';
 
 const meta = {
-  title: 'Welcome to Astro.',
+  title: 'examples',
 }
 
-function getPageInfo(path: string) {
-  const href = path
-    .replace(/^\./, '')
-    .replace(/index\.astro$/, '')
-    .replace(/\.astro$/, '/');
-
-  // パスから表示用のテキストを生成
-  const text = href
-    .split('/')
-    .filter(Boolean)
-    .map(part => part.replace(/-/g, ' '))
-    .join(' / ');
-
-  return { href, text };
-}
-
-const pages = Object.keys(
-  import.meta.glob("./**/*.astro", { eager: true })
-)
-  .filter(path => path !== './index.astro')
-  .map(path => getPageInfo(path));
+const pages = getPages(/^\/[^\/]+\/?$/);
 ---
 
 <AppLayout {meta}>

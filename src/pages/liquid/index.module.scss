@@ -1,0 +1,78 @@
+@use './liquid.scss' as *;
+// @use '@/styles/foundations/custom-media.scss' as *;
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.exampleBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.liquidText {
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.liquidBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+@media (--mobile) {
+  .container {
+    padding: liquid(20, 'mobile', (min: 20, max: 64));
+    margin-bottom: liquid(20, 'mobile', (min: 20, max: 64));
+  }
+  .exampleBox {
+    gap: liquid(24, 'mobile', (min: 8, max: 24));
+  }
+  .liquidText {
+    font-size: liquid(32, 'mobile', (min: 24, max: 32));
+  }
+  .liquidBox {
+    width: liquid(200, 'mobile', (min: 100, max: 200));
+    padding: liquid(80, 'mobile', (min: 40, max: 80)) 10px;
+    border: liquid(4, 'mobile', (min: 2, max: 4)) solid rgba(255, 255, 255, 0.5);
+    border-radius: liquid(12, 'mobile', (min: 8, max: 12));
+    font-size: liquid(14, 'mobile', (min: 8, max: 14));
+  }
+}
+
+@media (--desktop) {
+  .container {
+    padding: liquid(64, 'desktop', (min: 20, max: 80));
+    margin-bottom: liquid(64, 'desktop', (min: 20, max: 80));
+  }
+  .exampleBox {
+    gap: liquid(48, 'desktop', (min: 24, max: 64));
+  }
+  .liquidText {
+    font-size: liquid(48, 'desktop', (min: 32, max: 64));
+  }
+  .liquidBox {
+    width: liquid(400, 'desktop', (min: 250, max: 600));
+    padding: liquid(140, 'desktop', (min: 80, max: 200)) 20px;
+    border: liquid(8, 'desktop', (min: 4, max: 8)) solid rgba(255, 255, 255, 0.5);
+    border-radius: liquid(24, 'desktop', (min: 12, max: 32));
+    font-size: liquid(28, 'desktop', (min: 14, max: 36));
+  }
+}

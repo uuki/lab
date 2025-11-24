@@ -1,14 +1,14 @@
 ---
-import AppLayout from '@/layouts/App.astro';
+import CreativeCodingLayout from '@/layouts/themes/CreativeCoding/CreativeCoding.astro';
 import { Icon } from 'astro-icon/components';
-import style from './style.module.scss';
+import style from './index.module.scss';
 
 const meta = {
   title: 'Report 002 - WebGL School Reports',
 }
 ---
 
-<AppLayout {meta}>
+<CreativeCodingLayout {meta}>
   <div id="webgl"></div>
   <div class={style.remote}>
     <div class:list={[style.remote__content, 'js-three-control']}>
@@ -18,7 +18,7 @@ const meta = {
       </div>
     </div>
   </div>
-</AppLayout>
+</CreativeCodingLayout>
 
 <script>
   import '@/js/webgl-school-2024/002/script';

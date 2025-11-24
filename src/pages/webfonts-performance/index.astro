@@ -1,16 +1,16 @@
 ---
-import CreativeCodingLayout from '@/layouts/themes/CreativeCoding/CreativeCoding.astro';
+import WebUILayout from '@/layouts/themes/WebUI/WebUI.astro';
 import { getPages } from '@/utils/route';
 
 const meta = {
-  title: 'WebGL School Reports',
+  title: 'webfonts performance',
 }
 
-const currentDir = '/webgl-school-2024';
+const currentDir = '/webfonts-performance';
 const pages = getPages(new RegExp(`^${currentDir}/[^/]+/?$`));
 ---
 
-<CreativeCodingLayout  {meta}>
+<WebUILayout {meta}>
   <ul>
     {pages.map((it) => (
       <li>
@@ -18,4 +18,4 @@ const pages = getPages(new RegExp(`^${currentDir}/[^/]+/?$`));
       </li>
     ))}
   </ul>
-</CreativeCodingLayout>
+</WebUILayout>

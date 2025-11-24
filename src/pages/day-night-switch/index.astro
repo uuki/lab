@@ -1,0 +1,15 @@
+---
+import WebUILayout from '@/layouts/themes/WebUI/WebUI.astro';
+import ButtonDayNightSwitcher from '@/components/projects/day-night-switch/ButtonDayNightSwitcher/ButtonDayNightSwitcher.astro';
+import style from './index.module.scss';
+
+const meta = {
+  title: 'ui-examples',
+}
+---
+<WebUILayout {meta}>
+  <div class={style.container}>
+    <!-- Idea source: https://www.tiktok.com/@never.more17/video/7224470057282178305 -->
+    <ButtonDayNightSwitcher />
+  </div>
+</WebUILayout>

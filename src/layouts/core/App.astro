@@ -1,5 +1,5 @@
 ---
-import DocumentLayout, { type Props as DocumentProps } from '../layouts/Document.astro';
+import DocumentLayout, { type Props as DocumentProps } from '@/layouts/core/Document.astro';
 export interface Props extends DocumentProps {}
 
 const props = Astro.props;
@@ -7,7 +7,5 @@ const props = Astro.props;
 
 <DocumentLayout {...props}>
   <slot name="head" slot="head" />
-  <main>
-    <slot />
-  </main>
+  <slot />
 </DocumentLayout>
